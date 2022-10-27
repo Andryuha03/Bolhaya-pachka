@@ -16,7 +16,8 @@
         <Grid Grid.Row="3" Background="#FFC1C1"></Grid>
         <Image Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Source="/Большая пачка.png" Stretch="Fill"/>
         <TextBlock Text="Большая пачка" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36"></TextBlock>
-        <Button Name="Back_button" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Margin="0,0,10,0"></Button>
-        <Frame Grid.Row="1" Name="MainFrame"></Frame>
+        <Button  Name="Back_button" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Margin="0,0,10,0" Click="Back_button_Click"></Button>
+        <Frame NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered" Grid.Row="1" Name="MainFrame"></Frame>
+        <Button Grid.Row="2" Content="Материалы" HorizontalAlignment="left" Margin="10,0,0,0" VerticalAlignment="Center" Name="Material_button" Click="Material_button_Click" > </Button>
     </Grid>
 </Window>

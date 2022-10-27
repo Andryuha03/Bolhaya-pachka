@@ -23,7 +23,25 @@ namespace Bolhaya_pachka
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new MaterialsPage());
+            Manager.MainFrame = MainFrame;
             
+        }
+
+        private void Material_button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Back_button_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.GoBack();
+        }
+
+        private void MainFrame_ContentRendered(object sender, EventArgs e)
+        {
+            if (MainFrame.CanGoBack) { Back_button.Visibility = Visibility.Visible; }
+            else Back_button.Visibility = Visibility.Hidden;
         }
     }
 }
