@@ -1,0 +1,746 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище B.P.Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "B.P..dbo.A.P." не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="A_P_">
+          <Key>
+            <PropertyRef Name="id_agent" />
+            <PropertyRef Name="id_product" />
+          </Key>
+          <Property Name="id_agent" Type="int" Nullable="false" />
+          <Property Name="id_product" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="id_agent" />
+          </Key>
+          <Property Name="id_agent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_company" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="text" Nullable="false" />
+          <Property Name="juridical_adress" Type="text" Nullable="false" />
+          <Property Name="INN" Type="int" Nullable="false" />
+          <Property Name="KPP" Type="text" Nullable="false" />
+          <Property Name="full_name_director" Type="text" Nullable="false" />
+          <Property Name="phone" Type="int" Nullable="false" />
+          <Property Name="email" Type="text" />
+          <Property Name="logo" Type="binary" MaxLength="50" />
+          <Property Name="priority_in_deliveries" Type="text" />
+          <Property Name="points_of_sale" Type="ntext" />
+          <Property Name="name_attribute" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id_material" />
+          </Key>
+          <Property Name="Id_material" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="image" Type="varbinary(max)" />
+          <Property Name="price" Type="money" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="min_quantity" Type="int" Nullable="false" />
+          <Property Name="quantity_in_pack" Type="int" Nullable="false" />
+          <Property Name="unit" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="suppliers" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "B.P..dbo.p.M." не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="p_M_">
+          <Key>
+            <PropertyRef Name="id_production" />
+            <PropertyRef Name="id_material" />
+          </Key>
+          <Property Name="id_production" Type="int" Nullable="false" />
+          <Property Name="id_material" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "B.P..dbo.p.P." не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="p_P_">
+          <Key>
+            <PropertyRef Name="id_production" />
+            <PropertyRef Name="id_product" />
+          </Key>
+          <Property Name="id_production" Type="int" Nullable="false" />
+          <Property Name="id_product" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id_product" />
+          </Key>
+          <Property Name="Id_product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="article" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="image" Type="binary" MaxLength="50" Nullable="false" />
+          <Property Name="minimum_cost" Type="money" Nullable="false" />
+          <Property Name="size" Type="int" Nullable="false" />
+          <Property Name="weight_without_packaging" Type="int" Nullable="false" />
+          <Property Name="weight_with_packaging" Type="int" Nullable="false" />
+          <Property Name="quality_certificate" Type="binary" MaxLength="50" Nullable="false" />
+          <Property Name="namber_standart" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="production">
+          <Key>
+            <PropertyRef Name="id_production" />
+          </Key>
+          <Property Name="id_production" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="cost_price" Type="money" Nullable="false" />
+          <Property Name="namber_workshop" Type="int" Nullable="false" />
+          <Property Name="minimum_workers" Type="int" Nullable="false" />
+          <Property Name="required_materials" Type="text" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "B.P..dbo.S.M." не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="S_M_">
+          <Key>
+            <PropertyRef Name="id_supplier" />
+            <PropertyRef Name="id_material" />
+          </Key>
+          <Property Name="id_supplier" Type="int" Nullable="false" />
+          <Property Name="id_material" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="id_supplier" />
+          </Key>
+          <Property Name="id_supplier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="INN" Type="int" Nullable="false" />
+          <Property Name="rating" Type="int" Nullable="false" />
+          <Property Name="start_data" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Turnstile">
+          <Key>
+            <PropertyRef Name="id_turnstile" />
+          </Key>
+          <Property Name="id_turnstile" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_worker" Type="int" Nullable="false" />
+          <Property Name="date_n_time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "B.P..dbo.W.p." не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="W_p_">
+          <Key>
+            <PropertyRef Name="id_worker" />
+            <PropertyRef Name="id_production" />
+          </Key>
+          <Property Name="id_worker" Type="int" Nullable="false" />
+          <Property Name="id_production" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="id_worker" />
+          </Key>
+          <Property Name="id_worker" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="birthday" Type="date" Nullable="false" />
+          <Property Name="pasport" Type="int" Nullable="false" />
+          <Property Name="requisites_bank" Type="int" Nullable="false" />
+          <Property Name="family" Type="binary" MaxLength="50" />
+          <Property Name="health" Type="binary" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_A_P__Agent">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="1" />
+          <End Role="A_P_" Type="Self.A_P_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="id_agent" />
+            </Principal>
+            <Dependent Role="A_P_">
+              <PropertyRef Name="id_agent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_A_P__Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="A_P_" Type="Self.A_P_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id_product" />
+            </Principal>
+            <Dependent Role="A_P_">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p_M__Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="p_M_" Type="Self.p_M_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id_material" />
+            </Principal>
+            <Dependent Role="p_M_">
+              <PropertyRef Name="id_material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p_M__production">
+          <End Role="production" Type="Self.production" Multiplicity="1" />
+          <End Role="p_M_" Type="Self.p_M_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="production">
+              <PropertyRef Name="id_production" />
+            </Principal>
+            <Dependent Role="p_M_">
+              <PropertyRef Name="id_production" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p_P__Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="p_P_" Type="Self.p_P_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id_product" />
+            </Principal>
+            <Dependent Role="p_P_">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p_P__production">
+          <End Role="production" Type="Self.production" Multiplicity="1" />
+          <End Role="p_P_" Type="Self.p_P_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="production">
+              <PropertyRef Name="id_production" />
+            </Principal>
+            <Dependent Role="p_P_">
+              <PropertyRef Name="id_production" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_M__Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="S_M_" Type="Self.S_M_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id_material" />
+            </Principal>
+            <Dependent Role="S_M_">
+              <PropertyRef Name="id_material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_M__Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="S_M_" Type="Self.S_M_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id_supplier" />
+            </Principal>
+            <Dependent Role="S_M_">
+              <PropertyRef Name="id_supplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Turnstile_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Turnstile" Type="Self.Turnstile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="id_worker" />
+            </Principal>
+            <Dependent Role="Turnstile">
+              <PropertyRef Name="id_worker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_W_p__production">
+          <End Role="production" Type="Self.production" Multiplicity="1" />
+          <End Role="W_p_" Type="Self.W_p_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="production">
+              <PropertyRef Name="id_production" />
+            </Principal>
+            <Dependent Role="W_p_">
+              <PropertyRef Name="id_production" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_W_p__Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="W_p_" Type="Self.W_p_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="id_worker" />
+            </Principal>
+            <Dependent Role="W_p_">
+              <PropertyRef Name="id_worker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище BPModelContainer">
+          <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="production" EntityType="Self.production" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Turnstile" EntityType="Self.Turnstile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="A_P_" EntityType="Self.A_P_" store:Type="Tables" store:Schema="dbo" store:Name="A.P.">
+            <DefiningQuery>SELECT 
+    [A_P_].[id_agent] AS [id_agent], 
+    [A_P_].[id_product] AS [id_product]
+    FROM [dbo].[A.P.] AS [A_P_]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="p_M_" EntityType="Self.p_M_" store:Type="Tables" store:Schema="dbo" store:Name="p.M.">
+            <DefiningQuery>SELECT 
+    [p_M_].[id_production] AS [id_production], 
+    [p_M_].[id_material] AS [id_material]
+    FROM [dbo].[p.M.] AS [p_M_]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="p_P_" EntityType="Self.p_P_" store:Type="Tables" store:Schema="dbo" store:Name="p.P.">
+            <DefiningQuery>SELECT 
+    [p_P_].[id_production] AS [id_production], 
+    [p_P_].[id_product] AS [id_product]
+    FROM [dbo].[p.P.] AS [p_P_]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="S_M_" EntityType="Self.S_M_" store:Type="Tables" store:Schema="dbo" store:Name="S.M.">
+            <DefiningQuery>SELECT 
+    [S_M_].[id_supplier] AS [id_supplier], 
+    [S_M_].[id_material] AS [id_material]
+    FROM [dbo].[S.M.] AS [S_M_]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="W_p_" EntityType="Self.W_p_" store:Type="Tables" store:Schema="dbo" store:Name="W.p.">
+            <DefiningQuery>SELECT 
+    [W_p_].[id_worker] AS [id_worker], 
+    [W_p_].[id_production] AS [id_production]
+    FROM [dbo].[W.p.] AS [W_p_]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_A_P__Agent" Association="Self.FK_A_P__Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="A_P_" EntitySet="A_P_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_A_P__Product" Association="Self.FK_A_P__Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="A_P_" EntitySet="A_P_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p_M__Material" Association="Self.FK_p_M__Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="p_M_" EntitySet="p_M_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p_M__production" Association="Self.FK_p_M__production">
+            <End Role="production" EntitySet="production" />
+            <End Role="p_M_" EntitySet="p_M_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p_P__Product" Association="Self.FK_p_P__Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="p_P_" EntitySet="p_P_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p_P__production" Association="Self.FK_p_P__production">
+            <End Role="production" EntitySet="production" />
+            <End Role="p_P_" EntitySet="p_P_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_M__Material" Association="Self.FK_S_M__Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="S_M_" EntitySet="S_M_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_M__Supplier" Association="Self.FK_S_M__Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="S_M_" EntitySet="S_M_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Turnstile_Worker" Association="Self.FK_Turnstile_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Turnstile" EntitySet="Turnstile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_W_p__production" Association="Self.FK_W_p__production">
+            <End Role="production" EntitySet="production" />
+            <End Role="W_p_" EntitySet="W_p_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_W_p__Worker" Association="Self.FK_W_p__Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="W_p_" EntitySet="W_p_" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="B.P.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="id_agent" />
+          </Key>
+          <Property Name="id_agent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="juridical_adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INN" Type="Int32" Nullable="false" />
+          <Property Name="KPP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="full_name_director" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="logo" Type="Binary" MaxLength="50" FixedLength="true" />
+          <Property Name="priority_in_deliveries" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="points_of_sale" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="name_attribute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.A_P_" FromRole="Agent" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id_material" />
+          </Key>
+          <Property Name="Id_material" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="min_quantity" Type="Int32" Nullable="false" />
+          <Property Name="quantity_in_pack" Type="Int32" Nullable="false" />
+          <Property Name="unit" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="suppliers" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="productions" Relationship="Self.p_M_" FromRole="Material" ToRole="production" />
+          <NavigationProperty Name="Suppliers1" Relationship="Self.S_M_" FromRole="Material" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id_product" />
+          </Key>
+          <Property Name="Id_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="article" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image" Type="Binary" MaxLength="50" FixedLength="true" Nullable="false" />
+          <Property Name="minimum_cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="size" Type="Int32" Nullable="false" />
+          <Property Name="weight_without_packaging" Type="Int32" Nullable="false" />
+          <Property Name="weight_with_packaging" Type="Int32" Nullable="false" />
+          <Property Name="quality_certificate" Type="Binary" MaxLength="50" FixedLength="true" Nullable="false" />
+          <Property Name="namber_standart" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Agents" Relationship="Self.A_P_" FromRole="Product" ToRole="Agent" />
+          <NavigationProperty Name="productions" Relationship="Self.p_P_" FromRole="Product" ToRole="production" />
+        </EntityType>
+        <EntityType Name="production">
+          <Key>
+            <PropertyRef Name="id_production" />
+          </Key>
+          <Property Name="id_production" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="cost_price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="namber_workshop" Type="Int32" Nullable="false" />
+          <Property Name="minimum_workers" Type="Int32" Nullable="false" />
+          <Property Name="required_materials" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Materials" Relationship="Self.p_M_" FromRole="production" ToRole="Material" />
+          <NavigationProperty Name="Products" Relationship="Self.p_P_" FromRole="production" ToRole="Product" />
+          <NavigationProperty Name="Workers" Relationship="Self.W_p_" FromRole="production" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="id_supplier" />
+          </Key>
+          <Property Name="id_supplier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="INN" Type="Int32" Nullable="false" />
+          <Property Name="rating" Type="Int32" Nullable="false" />
+          <Property Name="start_data" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Materials" Relationship="Self.S_M_" FromRole="Supplier" ToRole="Material" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Turnstile">
+          <Key>
+            <PropertyRef Name="id_turnstile" />
+          </Key>
+          <Property Name="id_turnstile" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_worker" Type="Int32" Nullable="false" />
+          <Property Name="date_n_time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Turnstile_Worker" FromRole="Turnstile" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="id_worker" />
+          </Key>
+          <Property Name="id_worker" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="pasport" Type="Int32" Nullable="false" />
+          <Property Name="requisites_bank" Type="Int32" Nullable="false" />
+          <Property Name="family" Type="Binary" MaxLength="50" FixedLength="true" />
+          <Property Name="health" Type="Binary" MaxLength="50" FixedLength="true" />
+          <NavigationProperty Name="Turnstiles" Relationship="Self.FK_Turnstile_Worker" FromRole="Worker" ToRole="Turnstile" />
+          <NavigationProperty Name="productions" Relationship="Self.W_p_" FromRole="Worker" ToRole="production" />
+        </EntityType>
+        <Association Name="FK_Turnstile_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Turnstile" Type="Self.Turnstile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="id_worker" />
+            </Principal>
+            <Dependent Role="Turnstile">
+              <PropertyRef Name="id_worker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="A_P_">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+        </Association>
+        <Association Name="p_M_">
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+          <End Role="production" Type="Self.production" Multiplicity="*" />
+        </Association>
+        <Association Name="p_P_">
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="production" Type="Self.production" Multiplicity="*" />
+        </Association>
+        <Association Name="S_M_">
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+        </Association>
+        <Association Name="W_p_">
+          <End Role="production" Type="Self.production" Multiplicity="*" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="EntitiesDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agents" EntityType="Self.Agent" />
+          <EntitySet Name="Materials" EntityType="Self.Material" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="productions" EntityType="Self.production" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Turnstiles" EntityType="Self.Turnstile" />
+          <EntitySet Name="Workers" EntityType="Self.Worker" />
+          <AssociationSet Name="FK_Turnstile_Worker" Association="Self.FK_Turnstile_Worker">
+            <End Role="Worker" EntitySet="Workers" />
+            <End Role="Turnstile" EntitySet="Turnstiles" />
+          </AssociationSet>
+          <AssociationSet Name="A_P_" Association="Self.A_P_">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="p_M_" Association="Self.p_M_">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="production" EntitySet="productions" />
+          </AssociationSet>
+          <AssociationSet Name="p_P_" Association="Self.p_P_">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="production" EntitySet="productions" />
+          </AssociationSet>
+          <AssociationSet Name="S_M_" Association="Self.S_M_">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="Supplier" EntitySet="Suppliers" />
+          </AssociationSet>
+          <AssociationSet Name="W_p_" Association="Self.W_p_">
+            <End Role="production" EntitySet="productions" />
+            <End Role="Worker" EntitySet="Workers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BPModelContainer" CdmEntityContainer="EntitiesDB">
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="B.P.Model.Agent">
+              <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="id_agent" ColumnName="id_agent" />
+                <ScalarProperty Name="name_company" ColumnName="name_company" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="juridical_adress" ColumnName="juridical_adress" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="KPP" ColumnName="KPP" />
+                <ScalarProperty Name="full_name_director" ColumnName="full_name_director" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="priority_in_deliveries" ColumnName="priority_in_deliveries" />
+                <ScalarProperty Name="points_of_sale" ColumnName="points_of_sale" />
+                <ScalarProperty Name="name_attribute" ColumnName="name_attribute" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="B.P.Model.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="Id_material" ColumnName="Id_material" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="min_quantity" ColumnName="min_quantity" />
+                <ScalarProperty Name="quantity_in_pack" ColumnName="quantity_in_pack" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="suppliers" ColumnName="suppliers" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="B.P.Model.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Id_product" ColumnName="Id_product" />
+                <ScalarProperty Name="article" ColumnName="article" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="minimum_cost" ColumnName="minimum_cost" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="weight_without_packaging" ColumnName="weight_without_packaging" />
+                <ScalarProperty Name="weight_with_packaging" ColumnName="weight_with_packaging" />
+                <ScalarProperty Name="quality_certificate" ColumnName="quality_certificate" />
+                <ScalarProperty Name="namber_standart" ColumnName="namber_standart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productions">
+            <EntityTypeMapping TypeName="B.P.Model.production">
+              <MappingFragment StoreEntitySet="production">
+                <ScalarProperty Name="id_production" ColumnName="id_production" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="cost_price" ColumnName="cost_price" />
+                <ScalarProperty Name="namber_workshop" ColumnName="namber_workshop" />
+                <ScalarProperty Name="minimum_workers" ColumnName="minimum_workers" />
+                <ScalarProperty Name="required_materials" ColumnName="required_materials" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="B.P.Model.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="id_supplier" ColumnName="id_supplier" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="start_data" ColumnName="start_data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="B.P.Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Turnstiles">
+            <EntityTypeMapping TypeName="B.P.Model.Turnstile">
+              <MappingFragment StoreEntitySet="Turnstile">
+                <ScalarProperty Name="id_turnstile" ColumnName="id_turnstile" />
+                <ScalarProperty Name="id_worker" ColumnName="id_worker" />
+                <ScalarProperty Name="date_n_time" ColumnName="date_n_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workers">
+            <EntityTypeMapping TypeName="B.P.Model.Worker">
+              <MappingFragment StoreEntitySet="Worker">
+                <ScalarProperty Name="id_worker" ColumnName="id_worker" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="pasport" ColumnName="pasport" />
+                <ScalarProperty Name="requisites_bank" ColumnName="requisites_bank" />
+                <ScalarProperty Name="family" ColumnName="family" />
+                <ScalarProperty Name="health" ColumnName="health" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="A_P_" TypeName="B.P.Model.A_P_" StoreEntitySet="A_P_">
+            <EndProperty Name="Agent">
+              <ScalarProperty Name="id_agent" ColumnName="id_agent" />
+            </EndProperty>
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id_product" ColumnName="id_product" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="p_M_" TypeName="B.P.Model.p_M_" StoreEntitySet="p_M_">
+            <EndProperty Name="Material">
+              <ScalarProperty Name="Id_material" ColumnName="id_material" />
+            </EndProperty>
+            <EndProperty Name="production">
+              <ScalarProperty Name="id_production" ColumnName="id_production" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="p_P_" TypeName="B.P.Model.p_P_" StoreEntitySet="p_P_">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id_product" ColumnName="id_product" />
+            </EndProperty>
+            <EndProperty Name="production">
+              <ScalarProperty Name="id_production" ColumnName="id_production" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="S_M_" TypeName="B.P.Model.S_M_" StoreEntitySet="S_M_">
+            <EndProperty Name="Material">
+              <ScalarProperty Name="Id_material" ColumnName="id_material" />
+            </EndProperty>
+            <EndProperty Name="Supplier">
+              <ScalarProperty Name="id_supplier" ColumnName="id_supplier" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="W_p_" TypeName="B.P.Model.W_p_" StoreEntitySet="W_p_">
+            <EndProperty Name="production">
+              <ScalarProperty Name="id_production" ColumnName="id_production" />
+            </EndProperty>
+            <EndProperty Name="Worker">
+              <ScalarProperty Name="id_worker" ColumnName="id_worker" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
