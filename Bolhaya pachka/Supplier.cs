@@ -23,7 +23,7 @@ namespace Bolhaya_pachka
         public int id_supplier { get; set; }
         public string name { get; set; }
         public string type { get; set; }
-        public int INN { get; set; }
+        public string INN { get; set; }
         public int rating { get; set; }
         public System.DateTime start_data { get; set; }
     

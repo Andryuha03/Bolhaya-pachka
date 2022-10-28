@@ -46,7 +46,7 @@
           <Property Name="min_quantity" Type="int" Nullable="false" />
           <Property Name="quantity_in_pack" Type="int" Nullable="false" />
           <Property Name="unit" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="suppliers" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="suppliers" Type="nvarchar" MaxLength="50" />
           <Property Name="description" Type="text" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
@@ -113,7 +113,7 @@
           <Property Name="id_supplier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="type" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="INN" Type="int" Nullable="false" />
+          <Property Name="INN" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="rating" Type="int" Nullable="false" />
           <Property Name="start_data" Type="date" Nullable="false" />
         </EntityType>
@@ -412,7 +412,7 @@
           <Property Name="min_quantity" Type="Int32" Nullable="false" />
           <Property Name="quantity_in_pack" Type="Int32" Nullable="false" />
           <Property Name="unit" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="suppliers" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="suppliers" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="productions" Relationship="Self.p_M_" FromRole="Material" ToRole="production" />
           <NavigationProperty Name="Suppliers1" Relationship="Self.S_M_" FromRole="Material" ToRole="Supplier" />
@@ -456,7 +456,7 @@
           <Property Name="id_supplier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="type" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="INN" Type="Int32" Nullable="false" />
+          <Property Name="INN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="rating" Type="Int32" Nullable="false" />
           <Property Name="start_data" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Materials" Relationship="Self.S_M_" FromRole="Supplier" ToRole="Material" />
@@ -528,7 +528,7 @@
           <End Role="production" Type="Self.production" Multiplicity="*" />
           <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="EntitiesDB" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Agents" EntityType="Self.Agent" />
           <EntitySet Name="Materials" EntityType="Self.Material" />
           <EntitySet Name="Products" EntityType="Self.Product" />
@@ -567,7 +567,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище BPModelContainer" CdmEntityContainer="EntitiesDB">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BPModelContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Agents">
             <EntityTypeMapping TypeName="B.P.Model.Agent">
               <MappingFragment StoreEntitySet="Agent">

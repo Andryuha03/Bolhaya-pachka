@@ -13,16 +13,16 @@ namespace Bolhaya_pachka
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EntitiesDB : DbContext
+    public partial class Entities : DbContext
     {
-        private static EntitiesDB _context;
-        public EntitiesDB()
-            : base("name=EntitiesDB")
+        private static Entities _context;
+        public Entities()
+            : base("name=Entities")
         {
         }
-        public static EntitiesDB GetContext()
+        public static Entities GetContext()
         {
-            if( _context == null ) _context = new EntitiesDB();
+            if (_context == null) _context = new Entities();
             return _context;
         }
     
