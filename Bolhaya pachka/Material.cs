@@ -11,7 +11,10 @@ namespace Bolhaya_pachka
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Drawing;
+    using System.IO;
+
     public partial class Material
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +23,7 @@ namespace Bolhaya_pachka
             this.productions = new HashSet<production>();
             this.Suppliers1 = new HashSet<Supplier>();
         }
-    
+
         public int Id_material { get; set; }
         public string name { get; set; }
         public string type { get; set; }
@@ -32,6 +35,9 @@ namespace Bolhaya_pachka
         public string unit { get; set; }
         public string suppliers { get; set; }
         public string description { get; set; }
+
+
+        
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<production> productions { get; set; }

@@ -21,13 +21,13 @@
                             <RowDefinition Height="70"></RowDefinition>
                             <RowDefinition Height="310"></RowDefinition>
                             <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Image Width="400" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center" Margin="5" >
                             <Image.Source>
                                 <Binding Path="ImagePreview">
                                     <Binding.TargetNullValue>
-                                        <ImageSource>Pictures/picture.png</ImageSource>
+                                        <ImageSource>C:\Users\zverev\source\repos\Bolhaya pachka\Bolhaya pachka\pictures\picture.png</ImageSource>
                                     </Binding.TargetNullValue>
                                 </Binding>
                             </Image.Source>
@@ -41,6 +41,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+
     </Grid>
 </Page>

@@ -28,12 +28,12 @@ namespace Bolhaya_pachka
             InitializeComponent();
             MainFrame.Navigate(new MaterialsPage());
             Manager.MainFrame = MainFrame;
-            ImportSupplier();
+            //ImportSupplier();
         }
 
         private void Material_button_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new MaterialsPage());
         }
 
         private void Back_button_Click(object sender, RoutedEventArgs e)
@@ -67,6 +67,11 @@ namespace Bolhaya_pachka
                 Entities.GetContext().Suppliers.Add(tempSupplier);
                 Entities.GetContext().SaveChanges();
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

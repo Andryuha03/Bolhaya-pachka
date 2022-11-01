@@ -23,8 +23,8 @@ namespace Bolhaya_pachka
         public MaterialsPage()
         {
             InitializeComponent();
-            var currentTours = Entities.GetContext().Materials.ToList();
-            
+            var currentMaterial = Entities.GetContext().Materials.ToList();
+            LViewMaterial.ItemsSource = currentMaterial;
         }
     }
 }
