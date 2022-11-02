@@ -32,11 +32,13 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <StackPanel>
-                                                   <TextBlock Text="{Binding type}" VerticalAlignment="Center" TextAlignment="Left" Width="390" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="5 5" FontSize="26"></TextBlock>
-                                                    <TextBlock Text="{Binding name}" Margin="5 5 5 15" HorizontalAlignment="Center" FontSize="26" FontWeight="Bold"></TextBlock>
-                                                <TextBlock Text="{Binding min_quantity}" HorizontalAlignment="Right" FontSize="14" ></TextBlock>
-                                                    <TextBlock Text="{Binding suppliers}" HorizontalAlignment="Left" FontSize="14" ></TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="120,0,0,0">
+                            <TextBlock Text="{Binding type}" Grid.Row="3" FontSize="14" VerticalAlignment="Top" />
+                            <TextBlock Text=" | " Grid.Row="3" FontSize="14"  VerticalAlignment="Top" ></TextBlock>
+                            <TextBlock Text="{Binding name}" Grid.Row="3" FontSize="14" VerticalAlignment="Top" ></TextBlock>
+
+                            <TextBlock Text="{Binding quantity, StringFormat={}  осталось:{0} шт}" Grid.Row="3" FontSize="14"  VerticalAlignment="Top"  />
+
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
