@@ -29,6 +29,7 @@ namespace Bolhaya_pachka
             MainFrame.Navigate(new MaterialsPage());
             Manager.MainFrame = MainFrame;
             //ImportSupplier();
+            ImportMaterials();
         }
 
         private void Material_button_Click(object sender, RoutedEventArgs e)
@@ -46,6 +47,41 @@ namespace Bolhaya_pachka
             if (MainFrame.CanGoBack) { Back_button.Visibility = Visibility.Visible; }
             else Back_button.Visibility = Visibility.Hidden;
         }
+
+        private void ImportMaterials()
+        {
+            var fileData = File.ReadAllLines(@"\\FSProfile1.biik.ad.biik.ru\Redirect\zverev\Desktop\Вариант 1\Сессия 1\materials_k_import.txt");
+            var images = Directory.GetFiles(@"\\FSProfile1.biik.ad.biik.ru\Redirect\zverev\Desktop\Вариант 1\Сессия 1\materials");
+
+            foreach (var line in fileData)
+            {
+                var data = line.Split('\t');
+
+                var tempMaterial = new Material
+                {
+                    name = data[0],
+                    type = data[1].Replace(" ", ""),
+                    price = decimal.Parse(data[3].Replace(" рублей", "").Replace(" руб.", "").Replace(" ₽", "").Replace(" ", "").Replace(".00", "")),
+                    quantity = int.Parse(data[4].Replace("На складе: ", "").Replace(" в наличии", "").Replace(" ", "")),
+                    min_quantity = int.Parse(data[5]),
+                    quantity_in_pack = int.Parse(data[6]),
+                    unit = data[7]
+                };
+
+                try
+                {
+                    tempMaterial.image = File.ReadAllBytes(images.FirstOrDefault(p => p.Contains(data[2])));
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                Entities.GetContext().Materials.Add(tempMaterial);
+                Entities.GetContext().SaveChanges();
+            }
+        }
+
 
         private void ImportSupplier()
         {

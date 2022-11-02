@@ -32,11 +32,12 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <TextBlock Text="{Binding name}" VerticalAlignment="Center" TextAlignment="Center" Width="390"
-                   TextWrapping="Wrap" HorizontalAlignment="Center" Margin="5 5" FontSize="26" Grid.Row="0"></TextBlock>
-                        <TextBlock Text="{Binding type}" Grid.Row="2" Margin="5 5 5 15" HorizontalAlignment="Center" FontSize="26" FontWeight="Bold"></TextBlock>
-                        <TextBlock Text="{Binding min_quantity}" Grid.Row="3" HorizontalAlignment="Right" FontSize="14" ></TextBlock>
-                        <TextBlock Text="{Binding suppliers}"  Grid.Row="3" HorizontalAlignment="Left" FontSize="14" ></TextBlock>
+                        <StackPanel>
+                                                   <TextBlock Text="{Binding type}" VerticalAlignment="Center" TextAlignment="Left" Width="390" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="5 5" FontSize="26"></TextBlock>
+                                                    <TextBlock Text="{Binding name}" Margin="5 5 5 15" HorizontalAlignment="Center" FontSize="26" FontWeight="Bold"></TextBlock>
+                                                <TextBlock Text="{Binding min_quantity}" HorizontalAlignment="Right" FontSize="14" ></TextBlock>
+                                                    <TextBlock Text="{Binding suppliers}" HorizontalAlignment="Left" FontSize="14" ></TextBlock>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
