@@ -16,16 +16,12 @@
         <ListView Grid.Row="1" Name="LViewMaterial">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="20" Width="400">
+                    <Grid Margin="20">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="70"></RowDefinition>
-                            <RowDefinition Height="310"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Image Width="400" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center" Margin="5" >
+                        <Image Width="100" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top"  >
                             <Image.Source>
-                                <Binding Path="ImagePreview">
+                                <Binding Path="image">
                                     <Binding.TargetNullValue>
                                         <ImageSource>C:\Users\zverev\source\repos\Bolhaya pachka\Bolhaya pachka\pictures\picture.png</ImageSource>
                                     </Binding.TargetNullValue>
@@ -40,10 +36,13 @@
                             <TextBlock Text="{Binding quantity, StringFormat={}  осталось:{0} шт}" Grid.Row="3" FontSize="14"  VerticalAlignment="Top"  />
 
                         </StackPanel>
+                        <TextBlock Text="{Binding min_quantity, StringFormat={}Минимальное количество: {0} шт}" Grid.Row="3" FontSize="14"  VerticalAlignment="Center" Margin="120,0,0,0" HorizontalAlignment="Left"  />
+                        <!--<TextBlock Text="{Binding supplier, StringFormat={}Поставщики: {0} }"  Grid.Row="3" FontSize="14"  VerticalAlignment="Bottom" Margin="120,0,0,0" HorizontalAlignment="Left"  />-->
+
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
+        <!--<TextBox Name="BoxSerch" TextChanged="BoxSerch_TextChanged" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="230" Margin="20,0,0,0"/>-->
     </Grid>
 </Page>

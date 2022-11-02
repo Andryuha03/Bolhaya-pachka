@@ -26,5 +26,10 @@ namespace Bolhaya_pachka
             var currentMaterial = Entities.GetContext().Materials.ToList();
             LViewMaterial.ItemsSource = currentMaterial;
         }
+
+        private void BoxSerch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

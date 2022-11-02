@@ -29,7 +29,7 @@ namespace Bolhaya_pachka
             MainFrame.Navigate(new MaterialsPage());
             Manager.MainFrame = MainFrame;
             //ImportSupplier();
-            ImportMaterials();
+            //ImportMaterials();
         }
 
         private void Material_button_Click(object sender, RoutedEventArgs e)
@@ -48,62 +48,62 @@ namespace Bolhaya_pachka
             else Back_button.Visibility = Visibility.Hidden;
         }
 
-        private void ImportMaterials()
-        {
-            var fileData = File.ReadAllLines(@"\\FSProfile1.biik.ad.biik.ru\Redirect\zverev\Desktop\Вариант 1\Сессия 1\materials_k_import.txt");
-            var images = Directory.GetFiles(@"\\FSProfile1.biik.ad.biik.ru\Redirect\zverev\Desktop\Вариант 1\Сессия 1\materials");
+        //private void ImportMaterials()
+        //{
+        //    var fileData = File.ReadAllLines(@"\\FSProfile1.biik.ad.biik.ru\Redirect\zverev\Desktop\Вариант 1\Сессия 1\materials_k_import.txt");
+        //    var images = Directory.GetFiles(@"\\FSProfile1.biik.ad.biik.ru\Redirect\zverev\Desktop\Вариант 1\Сессия 1\materials");
 
-            foreach (var line in fileData)
-            {
-                var data = line.Split('\t');
+        //    foreach (var line in fileData)
+        //    {
+        //        var data = line.Split('\t');
 
-                var tempMaterial = new Material
-                {
-                    name = data[0],
-                    type = data[1].Replace(" ", ""),
-                    price = decimal.Parse(data[3].Replace(" рублей", "").Replace(" руб.", "").Replace(" ₽", "").Replace(" ", "").Replace(".00", "")),
-                    quantity = int.Parse(data[4].Replace("На складе: ", "").Replace(" в наличии", "").Replace(" ", "")),
-                    min_quantity = int.Parse(data[5]),
-                    quantity_in_pack = int.Parse(data[6]),
-                    unit = data[7]
-                };
+        //        var tempMaterial = new Material
+        //        {
+        //            name = data[0],
+        //            type = data[1].Replace(" ", ""),
+        //            price = decimal.Parse(data[3].Replace(" рублей", "").Replace(" руб.", "").Replace(" ₽", "").Replace(" ", "").Replace(".00", "")),
+        //            quantity = int.Parse(data[4].Replace("На складе: ", "").Replace(" в наличии", "").Replace(" ", "")),
+        //            min_quantity = int.Parse(data[5]),
+        //            quantity_in_pack = int.Parse(data[6]),
+        //            unit = data[7]
+        //        };
 
-                try
-                {
-                    tempMaterial.image = File.ReadAllBytes(images.FirstOrDefault(p => p.Contains(data[2])));
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+        //        try
+        //        {
+        //            tempMaterial.image = File.ReadAllBytes(images.FirstOrDefault(p => p.Contains(data[2])));
+        //        }
+        //        catch(Exception ex)
+        //        {
+        //            Console.WriteLine(ex.Message);
+        //        }
 
-                Entities.GetContext().Materials.Add(tempMaterial);
-                Entities.GetContext().SaveChanges();
-            }
-        }
+        //        Entities.GetContext().Materials.Add(tempMaterial);
+        //        Entities.GetContext().SaveChanges();
+        //    }
+        //}
 
 
-        private void ImportSupplier()
-        {
-            var fileData = File.ReadAllLines(@"\\FSProfile1.biik.ad.biik.ru\Redirect\zverev\Desktop\Вариант 1\Сессия 1\supplier_k_import.txt");
+        //private void ImportSupplier()
+        //{
+        //    var fileData = File.ReadAllLines(@"\\FSProfile1.biik.ad.biik.ru\Redirect\zverev\Desktop\Вариант 1\Сессия 1\supplier_k_import.txt");
 
-            foreach (var line in fileData)
-            {
-                var data = line.Split(',');
-                var tempSupplier = new Supplier
-                {
-                    name = data[0],
-                    type = data[1].Replace(" ",""),
-                    INN = data[2].Replace(" ",""), 
-                    rating = int.Parse(data[3].Replace(" в рейтинге", "").Replace("Рейтинг = ", "").Replace(" ", "")),
-                    start_data = DateTime.Parse(String.Format("{0:dd-MM-yyyy}", data[4].Replace(" ", "")))
+        //    foreach (var line in fileData)
+        //    {
+        //        var data = line.Split(',');
+        //        var tempSupplier = new Supplier
+        //        {
+        //            name = data[0],
+        //            type = data[1].Replace(" ",""),
+        //            INN = data[2].Replace(" ",""), 
+        //            rating = int.Parse(data[3].Replace(" в рейтинге", "").Replace("Рейтинг = ", "").Replace(" ", "")),
+        //            start_data = DateTime.Parse(String.Format("{0:dd-MM-yyyy}", data[4].Replace(" ", "")))
 
-                };
+        //        };
 
-                Entities.GetContext().Suppliers.Add(tempSupplier);
-                Entities.GetContext().SaveChanges();
-            }
-        }
+        //        Entities.GetContext().Suppliers.Add(tempSupplier);
+        //        Entities.GetContext().SaveChanges();
+        //    }
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
